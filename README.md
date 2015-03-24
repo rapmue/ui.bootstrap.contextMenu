@@ -1,10 +1,10 @@
 #contextMenu
 
-AngularJS UI Bootstrap Module for adding context menus to elements. [Demo](http://jsfiddle.net/7nm0LprL/)
+AngularJS UI Bootstrap Module for adding context menus to elements. [Demo](http://jsfiddle.net/ykbjd90z/1/)
 
 `bower install angular-bootstrap-contextmenu`
 
-[![Example](http://templarian.com/files/angularjs_contextmenu.png)](http://jsfiddle.net/7nm0LprL/)
+[![Example](http://templarian.com/files/angularjs_contextmenu.png)](http://jsfiddle.net/ykbjd90z/1/)
 
 ## Usage
 
@@ -29,11 +29,11 @@ $scope.items = [
 };
 
 $scope.menuOptions = [
-    ['Select', function ($itemScope) {
+    {name: 'Select', icon: 'glyphicon glyphicon-ok-circle', onClick: function ($itemScope) {
         $scope.selected = $itemScope.item.name;
-    }],
+    }},
     null, // Dividier
-    ['Remove', function ($itemScope) {
+    [name: 'Remove', icon: null, onClick: function ($itemScope) {
         $scope.items.splice($itemScope.$index, 1);
     }]
 ];
@@ -41,7 +41,7 @@ $scope.menuOptions = [
 
 ## Menu Options
 
-Every menu option has an array with 2 indexs. Most items will use the `[String, Function]` format. If you need a dynamic item in your context menu you can also use the `[Function, Function]` format.
+Every menu option is an object with named properties. Most items will use the `{name: String, iconClass: String, onClick: Function}` format. If you need a dynamic item in your context menu you can also use the `[name: Function, iconClass: Function, onClick: Function]` format.
 
 ```js
 $scope.menuOptions = [
