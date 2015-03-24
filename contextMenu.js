@@ -22,14 +22,20 @@ angular.module('ui.bootstrap.contextMenu', [])
             } else {
                 $a = $('<a>');
                 $a.attr({ tabindex: '-1', href: '#' });
-                $a.text(typeof item[0] == 'string' ? item[0] : item[0].call($scope, $scope, event));
+                if (item['iconClass'] !== undefined && item['iconClass'] !== null && item['iconClass'].length > 0) {
+                    $span = $('<span>');
+                    $span.addClass(typeof item['iconClass'] == 'string' ? item['iconClass'] : item['iconClass'].call($scope, $scope));
+                    $a.append($span);
+                    $a.append(" ");
+                }
+                $a.append(typeof item['name'] == 'string' ? item['name'] : item['name'].call($scope, $scope));
                 $li.append($a);
                 $li.on('click', function ($event) {
                     $event.preventDefault();
                     $scope.$apply(function () {
                         $(event.currentTarget).removeClass('context');
                         $contextMenu.remove();
-                        item[1].call($scope, $scope, event);
+                        item['onClick'].call($scope, $scope);
                     });
                 });
             }
