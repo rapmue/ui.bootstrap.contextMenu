@@ -29,13 +29,21 @@ $scope.items = [
 };
 
 $scope.menuOptions = [
-    {name: 'Select', icon: 'glyphicon glyphicon-ok-circle', onClick: function ($itemScope) {
-        $scope.selected = $itemScope.item.name;
-    }},
+    {
+        name: 'Select',
+        iconClass: 'glyphicon glyphicon-ok-circle',
+        onClick: function ($itemScope) {
+            $scope.selected = $itemScope.item.name;
+        }
+    },
     null, // Dividier
-    [name: 'Remove', icon: null, onClick: function ($itemScope) {
-        $scope.items.splice($itemScope.$index, 1);
-    }]
+    {
+        name: 'Remove',
+        iconClass: null,  //no icon
+        onClick: function ($itemScope) {
+            $scope.items.splice($itemScope.$index, 1);
+        }
+    }
 ];
 ```
 
